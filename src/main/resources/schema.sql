@@ -16,13 +16,11 @@ CREATE TABLE authorities
 CREATE UNIQUE INDEX ix_auth_username
     on authorities (username, authority);
 
-
 CREATE TABLE transaction_account
 (
    id LONG NOT NULL,
    balance DECIMAL(10,2) NOT NULL,
-   username  VARCHAR(50) NOT NULL,
-   FOREIGN KEY (username) REFERENCES users (username)
+   username  VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE transaction

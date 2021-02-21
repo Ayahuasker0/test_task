@@ -25,9 +25,14 @@ public class PaymentsController {
     }
 
     @PostMapping("/pay")
-    public void pay(@RequestParam("account_id") Long accountId) {
-        //var transactionAccount = repository.findByUsername(principal.getName());
-        //var accountId = transactionAccount.get().getId();
+    public void pay(@RequestParam("account_id") Long accountParamId, Principal p) {
+        var transactionAccount = repository.findByUsername(p.getName());
+        if(!transactionAccount.isPresent()) {
+            log.error("User {} does not have an account", p.getName());
+            return;
+        }
+
+        var accountId = transactionAccount.get().getId();
         log.info("Received request to do payment for {}", accountId);
 
         paymentService.pay(accountId);

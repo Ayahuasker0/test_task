@@ -52,4 +52,12 @@ public class TransactionAccount {
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }
