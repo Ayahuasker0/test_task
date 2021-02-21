@@ -11,7 +11,7 @@ public class TransactionAccount {
     @Id
     @GeneratedValue
     private Long id;
-    private String accountId;
+    private String transactionAccountId;
     private Double sum;
 
     @OneToMany
