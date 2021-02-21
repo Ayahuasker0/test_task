@@ -1,6 +1,9 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.Transaction;
+import com.example.demo.entity.TransactionAccount;
 import com.example.demo.repository.TransactionAccountRepository;
+import com.example.demo.repository.TransactionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +16,12 @@ public class PaymentService {
 
     private static final BigDecimal paymentAmount = new BigDecimal("1.1");
     private final TransactionAccountRepository transactionAccountRepository;
+    private final TransactionRepository transactionRepository;
 
     @Autowired
-    public PaymentService(TransactionAccountRepository transactionAccountRepository) {
+    public PaymentService(TransactionAccountRepository transactionAccountRepository, TransactionRepository transactionRepository) {
         this.transactionAccountRepository = transactionAccountRepository;
+        this.transactionRepository = transactionRepository;
     }
 
     public void pay(Long accountId) {
@@ -45,7 +50,16 @@ public class PaymentService {
         log.info("New balance for account is {}", newBalance);
         transactionAccount.setBalance(newBalance);
 
-        //Add transaction
+        var transaction = createTransaction(transactionAccount,paymentAmount);
+        transactionRepository.save(transaction);
+
         transactionAccountRepository.save(transactionAccount);
+    }
+
+    private Transaction createTransaction(TransactionAccount acc, BigDecimal amount) {
+        return Transaction.builder()
+                .amount(amount)
+                .transactionAccount(acc)
+                .build();
     }
 }

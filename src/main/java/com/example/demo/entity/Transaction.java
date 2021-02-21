@@ -1,28 +1,26 @@
 package com.example.demo.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
-import java.util.Date;
+import java.math.BigDecimal;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Transaction {
 
     @Id
     @GeneratedValue
     private Long id;
-
-    private Double writingOffSum;
-    private Date date;
+    private BigDecimal amount;
 
     @ManyToOne
-    @JoinColumn(name = "transactionAccount_id")
+    @JoinColumn(name="transaction_account_id")
     private TransactionAccount transactionAccount;
-
-    public Transaction(){}
-
-    Transaction(Double writingOffSum, Date date){
-        this.writingOffSum = writingOffSum;
-        this.date = date;
-    }
 
     public Long getId() {
         return id;
@@ -32,19 +30,19 @@ public class Transaction {
         this.id = id;
     }
 
-    public double getWritingOffSum() {
-        return writingOffSum;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setWritingOffSum(Double writingOffSum) {
-        this.writingOffSum = writingOffSum;
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
-    public Date getDate() {
-        return date;
+    public TransactionAccount getTransactionAccount() {
+        return transactionAccount;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTransactionAccount(TransactionAccount transactionAccount) {
+        this.transactionAccount = transactionAccount;
     }
 }
