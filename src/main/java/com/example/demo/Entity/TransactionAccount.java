@@ -13,6 +13,4 @@ public class TransactionAccount {
     private Long id;
     private String transactionAccountId;
     private Double sum;
-
-    @OneToMany()
 }

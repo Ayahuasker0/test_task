@@ -24,6 +24,6 @@ public class PaymentsController {
 
     @GetMapping("/get_log")
     public Set<Transaction> getTransactionByAccount(@RequestParam("transactionAccountId") String transactionAccountId){
-        
+        return null;
     }
 }

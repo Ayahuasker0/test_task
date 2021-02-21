@@ -5,5 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class PaymentService {
 
-    public static void pay()
+    public static void pay() {
+
+    }
 }
