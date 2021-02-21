@@ -24,6 +24,7 @@ public class TransactionAccount {
     @GeneratedValue
     private Long id;
     private BigDecimal balance;
+    private String username;
 
     @OneToMany(mappedBy="transactionAccount")
     private List<Transaction> transactions = new ArrayList<>();
