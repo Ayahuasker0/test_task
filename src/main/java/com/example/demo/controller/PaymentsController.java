@@ -1,8 +1,8 @@
-package com.example.demo.Controllers;
+package com.example.demo.controller;
 
-import com.example.demo.Entity.Transaction;
-import com.example.demo.Entity.TransactionAccount;
-import com.example.demo.Service.PaymentService;
+import com.example.demo.entity.Transaction;
+import com.example.demo.entity.TransactionAccount;
+import com.example.demo.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
